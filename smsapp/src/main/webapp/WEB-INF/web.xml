@@ -15,15 +15,33 @@
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
-  <servlet>
-    <servlet-name>QuartzInitializer</servlet-name>
-    <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
-    <init-param>
-      <param-name>shutdown-on-unload</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <load-on-startup>2</load-on-startup>
-  </servlet>
+  
+  <!-- 
+     <context-param>
+         <param-name>quartz:config-file</param-name>
+         <param-value>/some/path/my_quartz.properties</param-value>
+     </context-param>
+    -->
+    
+     <context-param>
+         <param-name>quartz:shutdown-on-unload</param-name>
+         <param-value>true</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:wait-on-shutdown</param-name>
+         <param-value>false</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:start-scheduler-on-load</param-name>
+         <param-value>true</param-value>
+     </context-param>
+
+     <listener>
+         <listener-class>
+             br.com.cardif.sms.process.SmsExcheduleServletListener
+         </listener-class>
+     </listener>
+  
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -31,6 +49,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.xhml</url-pattern>
+    <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
 </web-app>

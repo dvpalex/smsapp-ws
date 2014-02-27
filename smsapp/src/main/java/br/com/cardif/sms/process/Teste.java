@@ -1,4 +1,4 @@
-package br.com.cardif.task;
+package br.com.cardif.sms.process;
 
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
