@@ -12,6 +12,8 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
+import br.com.cardif.sms.model.Message;
+
 public class SmsExcheduleServletListener implements ServletContextListener {
 
 	@Override
@@ -41,8 +43,18 @@ public class SmsExcheduleServletListener implements ServletContextListener {
 			} catch (SchedulerException e) {
 				e.printStackTrace();
 			}
-
+	}
+	
+	
+	public void generatorDataSms(){
+		
+		Message message = new Message();
+		
+		message.se
 		
 	}
+	
+	
+	
 
 }
