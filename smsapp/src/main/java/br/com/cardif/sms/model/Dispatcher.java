@@ -32,7 +32,7 @@ public class Dispatcher implements Serializable
 	
 	@OneToMany(mappedBy = "dispatcher", fetch = FetchType.LAZY)
 	@Cascade(value = { org.hibernate.annotations.CascadeType.MERGE} ) 
-	private List<Connector> connectors;
+	private List<Agent> agents;
 
 	public Long getDispatcherId() {
 		return dispatcherId;
@@ -58,11 +58,13 @@ public class Dispatcher implements Serializable
 		this.objective = objective;
 	}
 
-	public List<Connector> getConnectors() {
-		return connectors;
+	public List<Agent> getAgents() {
+		return agents;
 	}
 
-	public void setConnectors(List<Connector> connectors) {
-		this.connectors = connectors;
+	public void setAgents(List<Agent> agents) {
+		this.agents = agents;
 	}
+
+
 }

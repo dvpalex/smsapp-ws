@@ -47,8 +47,9 @@ public class ExecutionLog implements Serializable
 	@JoinColumn(name = "MODULE_ID", nullable = false)
 	private Module module = new Module();
 	
-	@Column(name = "OPERATION", length=1, nullable = false)
-	private String operation;
+	@ManyToOne
+	@JoinColumn(name = "OPERATION_ID")
+	private Operation operation;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE", nullable = false)
@@ -126,11 +127,15 @@ public class ExecutionLog implements Serializable
 		this.userLogin = userLogin;
 	}
 
-	public String getOperation() {
+	public Operation getOperation() {
 		return operation;
 	}
 
-	public void setOperation(String operation) {
+	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}
+
+
+	
+	
 }

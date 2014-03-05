@@ -1,8 +1,8 @@
 package br.com.cardif.sms.process;
 
-import static org.quartz.JobBuilder.*;
-import static org.quartz.TriggerBuilder.*;
-import static org.quartz.SimpleScheduleBuilder.*;
+//import static org.quartz.JobBuilder.*;
+//import static org.quartz.TriggerBuilder.*;
+//import static org.quartz.SimpleScheduleBuilder.*;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
