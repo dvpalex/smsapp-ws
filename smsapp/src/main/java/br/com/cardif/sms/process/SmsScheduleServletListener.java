@@ -5,12 +5,15 @@ import java.util.List;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.quartz.CronScheduleBuilder;
+import org.quartz.JobBuilder;
 //import org.quartz.CronScheduleBuilder;
 //import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
 //import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +25,10 @@ import br.com.cardif.sms.services.ScheduleService;
 
 
 @Configurable
-@Component("SmsScheduleServletListener")
-public class SmsScheduleServletListener  {
+public class SmsScheduleServletListener implements ServletContextListener  {
 
-	//implements ServletContextListener
-	
-	/*
 	@Autowired
-	protected ScheduleService scheduleService; //= new ScheduleService();
+	protected ScheduleService scheduleService; 
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent context) {
@@ -41,15 +40,16 @@ public class SmsScheduleServletListener  {
 	public void contextInitialized(ServletContextEvent context) {
 		
 		
-		List<Schedule> list = scheduleService.listEnabled(); 
+	/*	List<Schedule> list = scheduleService.listEnabled(); 
 		
 		System.out.println("Load Schedules");
 		
 		for(Schedule schedule : list){
 			
-		System.out.println("Schedule: " + schedule.getScheduleId());
+		System.out.println("Schedule: ");
 		}
 		
+		*/
 		JobDetail job = JobBuilder.newJob(SmsLoadFileJob.class)
 				.withIdentity("SmsLoadFile", "load").build();
 	 
@@ -69,6 +69,8 @@ public class SmsScheduleServletListener  {
 			} catch (SchedulerException e) {
 				e.printStackTrace();
 			}
+	
+			
 	}
-	*/
+
 }

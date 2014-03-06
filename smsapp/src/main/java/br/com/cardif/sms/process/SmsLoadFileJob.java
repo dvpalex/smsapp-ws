@@ -4,15 +4,13 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class SmsLoadFileJob  {
+public class SmsLoadFileJob implements Job {
 
-	//implements Job
-	/*
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		int i = 0;
 		System.out.println("Rodada: " + i++);
-	}*/
+	}
 
 	
 }
