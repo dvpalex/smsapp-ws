@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,15 @@ public class ScheduleService {
 
 	@PersistenceContext
 	protected  EntityManager em;
+
+	@Autowired
+	protected TestService testService;
 	
 	
 	public List<Schedule> listEnabled()
 	{
-		  TypedQuery<Schedule> query = em.createQuery("from Schedule r", Schedule.class);
+		
+		TypedQuery<Schedule> query = em.createQuery("from Schedule", Schedule.class);
 		  return query.getResultList();
 	}
 	

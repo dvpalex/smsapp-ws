@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>br.com.cardif.sms</groupId>
   <artifactId>smsapp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -18,12 +18,9 @@
 	<project.build.downloadJavadocs>false</project.build.downloadJavadocs>
 	<slf4j.version>1.6.4</slf4j.version>
 	<spring.version>4.0.2.RELEASE</spring.version><!-- 3.1.4.RELEASE -->
-	<aspectj.version>1.7.3</aspectj.version>
-	<spring.batch.version>2.2.0.RELEASE</spring.batch.version>
-	<spring.security.version>3.1.4.RELEASE</spring.security.version>
-	<quartz.version>1.8.6</quartz.version>
+	<aspectj.version>1.6.11</aspectj.version>
+	<quartz.version>2.2.1</quartz.version>
 	<database.persistenceUnit>cardif-sms-PU</database.persistenceUnit>
-    
   </properties>
   
   <repositories>
@@ -78,12 +75,12 @@
     <dependency>
     	<groupId>org.quartz-scheduler</groupId>
     	<artifactId>quartz</artifactId>
-    	<version>2.2.1</version>
+    	<version>${quartz.version}</version>
 	</dependency>
 	<dependency>
     	<groupId>org.quartz-scheduler</groupId>
     	<artifactId>quartz-jobs</artifactId>
-    	<version>2.2.1</version>
+    	<version>${quartz.version}</version>
 	</dependency>
 	  	
 	  	<!-- JEE -->
@@ -189,16 +186,17 @@
 		</dependency>
 		
 		<!-- AspectJ -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${aspectj.version}</version>
-		</dependency>  -->
+		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -280,34 +278,78 @@
 	</profiles>
   
   
-  <build>
-  
-  <resources>
-	        <resource>
-	            <directory>src/main/resources</directory>
-	            <filtering>true</filtering>
-	        </resource>
-	        <resource>
-	            <directory>src/test/resources</directory>
-	            <filtering>true</filtering>
-	        </resource>
-	    </resources>
-  <pluginManagement>
+  <build>	
+		<finalName>${project.artifactId}</finalName>		
+	  <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>aspectj-maven-plugin</artifactId>
+                    <version>1.4</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>test-compile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <source>${project.build.javaVersion}</source>
+                        <target>${project.build.javaVersion}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <configuration>
+                        <source>${project.build.javaVersion}</source>
+                        <target>${project.build.javaVersion}</target>
+                    </configuration>
+                </plugin>
+
+				<!-- Ignore/Execute plugin execution -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<!-- copy-dependency plugin -->
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>aspectj-maven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>test-compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>							
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+				
+				<plugin>
+        			<groupId>org.codehaus.mojo</groupId>
+        			<artifactId>sonar-maven-plugin</artifactId>
+       				<version>2.1</version>
+     			</plugin>
+				
+			</plugins>
+
+        </pluginManagement>
+        
 		<plugins>
-		<!--Interpretador dos recursos da aplicação -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<source>${project.build.javaVersion}</source>
-					<target>${project.build.javaVersion}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-		
-		
-		<!-- AspectJ compile-time weaving --> 
+				
+			<!-- AspectJ compile-time weaving --> 
 			<plugin>
 			    <groupId>org.codehaus.mojo</groupId>
 			    <artifactId>aspectj-maven-plugin</artifactId>
@@ -325,7 +367,7 @@
 							<groupId>org.springframework</groupId>
 							<artifactId>spring-aspects</artifactId>
 						</aspectLibrary>
-                 	</aspectLibraries>
+                  </aspectLibraries>
 				</configuration>
 				<executions>
 					<execution>
@@ -335,30 +377,28 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>			
+			</plugin>
+        
+			<!--Interpretador dos recursos da aplicação -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				  <configuration>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
 					<source>${project.build.javaVersion}</source>
 					<target>${project.build.javaVersion}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-			
-			
-			
 			<plugin>
-  			<groupId>org.apache.tomcat.maven</groupId>
-  			<artifactId>tomcat7-maven-plugin</artifactId>
-  			<version>2.2</version>
- 			 <configuration>
-    			<path>/${project.artifactId}</path>
-  			</configuration>
-		</plugin>
-		</plugins>
-		
-	</pluginManagement>
-  
-  </build>
+  				<groupId>org.apache.tomcat.maven</groupId>
+  				<artifactId>tomcat7-maven-plugin</artifactId>
+  				<version>2.1</version>
+ 				<configuration>
+    				<path>/${project.artifactId}</path>
+  				</configuration>
+			</plugin>
+	</plugins>    	
+</build>
+
 </project>
