@@ -48,12 +48,28 @@
   
 
   <dependencies>
+    
+    
+    <!-- Metrics - metricas de software -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+		<groupId>com.yammer.metrics</groupId>
+		<artifactId>metrics-core</artifactId>
+		<version>2.2.0</version>
+	</dependency>
+            
+    
+    <!-- Emma Test Converage -->
+   	<dependency>
+		<groupId>emma</groupId>
+		<artifactId>maven-emma-plugin</artifactId>
+		<version>0.5</version>
+	</dependency>
+
+    <dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.11</version>
+	</dependency>
     
     <!-- jackson  -->
     
@@ -342,6 +358,16 @@
         			<artifactId>sonar-maven-plugin</artifactId>
        				<version>2.1</version>
      			</plugin>
+
+	
+		        <plugin>
+		          <groupId>org.apache.maven.plugins</groupId>
+		          <artifactId>maven-surefire-plugin</artifactId>
+		          <version>2.14.1</version>
+		        </plugin>
+    
+
+
 				
 			</plugins>
 
@@ -349,6 +375,8 @@
         
 		<plugins>
 				
+			
+			
 			<!-- AspectJ compile-time weaving --> 
 			<plugin>
 			    <groupId>org.codehaus.mojo</groupId>

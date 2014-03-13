@@ -20,9 +20,6 @@ public class ScheduleService {
 	@PersistenceContext
 	protected  EntityManager em;
 
-	@Autowired
-	protected TestService testService;
-	
 	
 	public List<Schedule> listEnabled()
 	{
