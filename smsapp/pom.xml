@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.javaVersion>1.7</project.build.javaVersion>
+    <project.build.javaVersion>1.6</project.build.javaVersion>
 	<project.tests.skip>true</project.tests.skip>
 	<project.build.downloadSources>false</project.build.downloadSources>
 	<project.build.downloadJavadocs>false</project.build.downloadJavadocs>
@@ -21,8 +21,14 @@
 	<aspectj.version>1.6.11</aspectj.version>
 	<quartz.version>2.2.1</quartz.version>
 	<database.persistenceUnit>cardif-sms-PU</database.persistenceUnit>
+	
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.language>java</sonar.language>
+		<sonar.tests>junit</sonar.tests>
+		<sonar.showProfiling>true</sonar.showProfiling>
   </properties>
-  
   <repositories>
 		<repository>
 			<id>central</id>
@@ -49,6 +55,26 @@
 
   <dependencies>
     
+    
+    <dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.7.5</version>
+	</dependency>
+    
+    <dependency>
+         <groupId>org.reflections</groupId>
+         <artifactId>reflections</artifactId>
+         <version>0.9.9-RC1</version>
+     </dependency>
+    
+    <!-- Jacoco Agent -->
+    <dependency>
+		<groupId>org.jacoco</groupId>
+		<artifactId>org.jacoco.agent</artifactId>
+		<version>0.6.5.201403032054</version>
+	</dependency>
+            
     
     <!-- Metrics - metricas de software -->
     <dependency>
@@ -365,12 +391,7 @@
 		          <artifactId>maven-surefire-plugin</artifactId>
 		          <version>2.14.1</version>
 		        </plugin>
-    
-
-
-				
-			</plugins>
-
+    			</plugins>
         </pluginManagement>
         
 		<plugins>
@@ -426,6 +447,12 @@
     				<path>/${project.artifactId}</path>
   				</configuration>
 			</plugin>
+			<!--  <plugin>
+       			<groupId>org.codehaus.mojo</groupId>
+       			<artifactId>sonar-maven-plugin</artifactId>
+      				<version>2.1</version>
+    		</plugin>
+    		 -->
 	</plugins>    	
 </build>
 

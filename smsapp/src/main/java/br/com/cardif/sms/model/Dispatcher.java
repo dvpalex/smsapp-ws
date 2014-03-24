@@ -30,9 +30,9 @@ public class Dispatcher implements Serializable
 	@Column(name = "OBJECTIVE", length = 100, nullable = false)
 	private String objective;
 	
-	//@OneToMany(mappedBy = "dispatcher", fetch = FetchType.LAZY)
-	//@Cascade(value = { org.hibernate.annotations.CascadeType.MERGE} ) 
-	//private List<Agent> agents;
+	@OneToMany(mappedBy = "dispatcher", fetch = FetchType.LAZY)
+	@Cascade(value = { org.hibernate.annotations.CascadeType.MERGE} ) 
+	private List<Agent> agents;
 
 	public Long getDispatcherId() {
 		return dispatcherId;
@@ -58,7 +58,6 @@ public class Dispatcher implements Serializable
 		this.objective = objective;
 	}
 
-	/*
 	public List<Agent> getAgents() {
 		return agents;
 	}
@@ -66,6 +65,5 @@ public class Dispatcher implements Serializable
 	public void setAgents(List<Agent> agents) {
 		this.agents = agents;
 	}
-	*/
-
+	
 }

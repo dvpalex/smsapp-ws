@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	
+	<h:outputLabel>Seja Bem vindo ao munda JFS</h:outputLabel>
+<h:body>
+
+	<h1>All Quartz Jobs</h1>
+  <h:form>
+	<h:dataTable value="#{scheduler.quartzJobList}" var="quartz">
+ 	
+ 
+		<h:column>
+		  <!-- column header -->
+		  <f:facet name="header">Job Name</f:facet>
+		  <!-- row record -->
+    		  #{quartz.jobName}
+    		</h:column>
+ 
+		<h:column>
+		  <f:facet name="header">Job Group</f:facet>
+    		  #{quartz.jobGroup}
+    		</h:column>
+ 
+		<h:column>
+		  <f:facet name="header">Next Fire Time</f:facet>
+		  <h:outputText value="#{quartz.nextFireTime}">
+		      <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+		  </h:outputText>
+		</h:column>
+ 
+		<h:column>
+		  <f:facet name="header">Action</f:facet>
+		  <h:commandLink value="Fire Now"
+		     action="#{scheduler.fireNow(quartz.jobName, quartz.jobGroup)}" />
+		</h:column>
+ 
+	   </h:dataTable>
+	</h:form>
+
+
+</h:body>
+
+</html>

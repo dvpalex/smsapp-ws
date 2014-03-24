@@ -1,6 +1,7 @@
 package br.com.cardif.sms.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -37,8 +40,9 @@ public class Agent implements Serializable {
 	@Column(name = "FLAG_FREQUENCY_ONE", nullable = true)
 	private boolean flagFrequencyOnce;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "FLAG_FREQUENCY_ONE_VALUE", nullable = true)
-	private Integer flagFrequencyOnceValue;
+	private Date flagFrequencyOnceValue;
 	
 	@Column(name = "FLAG_FREQUENCY_EACH", nullable = true)
 	private boolean flagFrequencyEach;
@@ -117,11 +121,11 @@ public class Agent implements Serializable {
 		this.flagFrequencyOnce = flagFrequencyOnce;
 	}
 
-	public Integer getFlagFrequencyOnceValue() {
+	public Date getFlagFrequencyOnceValue() {
 		return flagFrequencyOnceValue;
 	}
 
-	public void setFlagFrequencyOnceValue(Integer flagFrequencyOnceValue) {
+	public void setFlagFrequencyOnceValue(Date flagFrequencyOnceValue) {
 		this.flagFrequencyOnceValue = flagFrequencyOnceValue;
 	}
 
@@ -146,7 +150,11 @@ public class Agent implements Serializable {
 	}
 
 	public void setFlagFrequencyEachBegin(Integer flagFrequencyEachBegin) {
-		this.flagFrequencyEachBegin = flagFrequencyEachBegin;
+		if(flagFrequencyEachBegin > 23 && flagFrequencyEachBegin < 0){
+			throw new NumberFormatException("Integer out of range[0..23]");
+		}else{	
+			this.flagFrequencyEachBegin = flagFrequencyEachBegin;
+		}
 	}
 
 	public Integer getFlagFrequencyEachEnd() {
@@ -154,7 +162,11 @@ public class Agent implements Serializable {
 	}
 
 	public void setFlagFrequencyEachEnd(Integer flagFrequencyEachEnd) {
-		this.flagFrequencyEachEnd = flagFrequencyEachEnd;
+		if(flagFrequencyEachBegin > 23 && flagFrequencyEachBegin < 0){
+			throw new NumberFormatException("Integer out of range[0..23]");	
+		}else{
+			this.flagFrequencyEachEnd = flagFrequencyEachEnd;
+		}
 	}
 
 	public boolean isFlagWeekDaySunday() {

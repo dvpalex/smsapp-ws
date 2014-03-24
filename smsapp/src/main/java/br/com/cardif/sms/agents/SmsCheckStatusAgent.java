@@ -6,13 +6,15 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class SmsSendAgent implements Job {
+public class SmsCheckStatusAgent implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		
-		System.out.println("SmsSendAgent executed at: " + Calendar.getInstance().getTime() );
+		//-" + context.getJobDetail().getJobDataMap().getString("ids") + "
+		System.out.println("SmsCheckStatus executed at: " + Calendar.getInstance().getTime() );
+	
+		
 	}
 
-	
 }

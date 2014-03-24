@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
-import br.com.cardif.sms.model.Schedule;
-import br.com.cardif.sms.services.ScheduleService;
-
 
 @Configurable
 @Component
@@ -21,8 +18,7 @@ public class SmsLoadFileAgent implements Job {
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		int i = 0;
-		System.out.println("Rodada: " + Calendar.getInstance().getTime() );
+		System.out.println("SmsLoadFileAgent executed at: " + Calendar.getInstance().getTime() );
 	}
 
 	
