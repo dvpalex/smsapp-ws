@@ -6,12 +6,12 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	
-	<h:outputLabel>Seja Bem vindo ao munda JFS</h:outputLabel>
+<h:outputLabel>Seja Bem vindo ao munda JFS</h:outputLabel>
 <h:body>
 
 	<h1>All Quartz Jobs</h1>
   <h:form>
-	<h:dataTable value="#{scheduler.quartzJobList}" var="quartz">
+	<h:dataTable value="#{scheduler.list}" var="quartz">
  	
  
 		<h:column>

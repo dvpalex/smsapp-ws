@@ -1,0 +1,136 @@
+<!-- Server Address brdxp53237:8081/sendmessageWS?wsdl -->
+
+<wsdl:definitions xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+       xmlns:tns="http://service.smws.cardif.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+       name="ISendMessageWSServiceService" targetNamespace="http://service.smws.cardif.com/"> 
+       <wsdl:types> 
+               <xs:schema xmlns:tns="http://service.smws.cardif.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                       elementFormDefault="unqualified" targetNamespace="http://service.smws.cardif.com/" version="1.0"> 
+                       <xs:element name="deliveryStatus" type="tns:getMessageDeliveryRequest" /> 
+                       <xs:element name="deliveryStatuses" type="tns:getMessageDeliveryRequestWrapper" /> 
+                       <xs:element name="getMessageDeliveryResponse" type="tns:getMessageDeliveryResponse" /> 
+                       <xs:element name="getMessageStatus" type="tns:getMessageStatus" /> 
+                       <xs:element name="getMessageStatusResponse" type="tns:getMessageStatusResponse" /> 
+                       <xs:element name="message" type="tns:sendMessageRequest" /> 
+                       <xs:element name="messages" type="tns:sendMessageRequestWrapper" /> 
+                       <xs:element name="sendMessageResponse" type="tns:sendMessageResponse" /> 
+                       <xs:element name="sendMessages" type="tns:sendMessages" /> 
+                       <xs:element name="sendMessagesResponse" type="tns:sendMessagesResponse" /> 
+                       <xs:complexType name="getMessageStatus"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="getMessageStatusRequestWrapper" type="tns:getMessageDeliveryRequestWrapper" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="getMessageDeliveryRequestWrapper"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="messages"> 
+                                               <xs:complexType> 
+                                                       <xs:sequence> 
+                                                               <xs:element maxOccurs="unbounded" minOccurs="0" name="message" type="tns:getMessageDeliveryRequest" /> 
+                                                       </xs:sequence> 
+                                               </xs:complexType> 
+                                       </xs:element> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="getMessageDeliveryRequest"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="uniqueId" type="xs:long" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="getMessageStatusResponse"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="return" type="tns:getMessageDeliveryResponse" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="getMessageDeliveryResponse"> 
+                               <xs:sequence /> 
+                       </xs:complexType> 
+                       <xs:complexType name="sendMessages"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="sendMessageRequestWrapper" type="tns:sendMessageRequestWrapper" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="sendMessageRequestWrapper"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="messages"> 
+                                               <xs:complexType> 
+                                                       <xs:sequence> 
+                                                               <xs:element maxOccurs="unbounded" minOccurs="0" name="message" type="tns:sendMessageRequest" /> 
+                                                       </xs:sequence> 
+                                               </xs:complexType> 
+                                       </xs:element> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="sendMessageRequest"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="uniqueId" type="xs:long" /> 
+                                       <xs:element minOccurs="0" name="to" type="xs:string" /> 
+                                       <xs:element minOccurs="0" name="from" type="xs:string" /> 
+                                       <xs:element minOccurs="0" name="msgText" type="xs:string" /> 
+                                       <xs:element minOccurs="0" name="scheduledDate" type="xs:dateTime" /> 
+                                       <xs:element minOccurs="0" name="groupId" type="xs:string" /> 
+                                       <xs:element minOccurs="0" name="subject" type="xs:string" /> 
+                                       <xs:element minOccurs="0" name="channel" type="xs:string" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="sendMessagesResponse"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="return" type="tns:sendMessageResponse" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+                       <xs:complexType name="sendMessageResponse"> 
+                               <xs:sequence> 
+                                       <xs:element minOccurs="0" name="responseStatus" type="xs:string" /> 
+                               </xs:sequence> 
+                       </xs:complexType> 
+               </xs:schema> 
+       </wsdl:types> 
+       <wsdl:message name="sendMessagesResponse"> 
+               <wsdl:part element="tns:sendMessagesResponse" name="parameters"></wsdl:part> 
+       </wsdl:message> 
+       <wsdl:message name="getMessageStatus"> 
+               <wsdl:part element="tns:getMessageStatus" name="parameters"></wsdl:part> 
+       </wsdl:message> 
+       <wsdl:message name="sendMessages"> 
+               <wsdl:part element="tns:sendMessages" name="parameters"></wsdl:part> 
+       </wsdl:message> 
+       <wsdl:message name="getMessageStatusResponse"> 
+               <wsdl:part element="tns:getMessageStatusResponse" name="parameters"></wsdl:part> 
+       </wsdl:message> 
+       <wsdl:portType name="ISendMessageWSService"> 
+               <wsdl:operation name="getMessageStatus"> 
+                       <wsdl:input message="tns:getMessageStatus" name="getMessageStatus"></wsdl:input> 
+                       <wsdl:output message="tns:getMessageStatusResponse" name="getMessageStatusResponse"></wsdl:output> 
+               </wsdl:operation> 
+               <wsdl:operation name="sendMessages"> 
+                       <wsdl:input message="tns:sendMessages" name="sendMessages"></wsdl:input> 
+                       <wsdl:output message="tns:sendMessagesResponse" name="sendMessagesResponse"></wsdl:output> 
+               </wsdl:operation> 
+       </wsdl:portType> 
+       <wsdl:binding name="ISendMessageWSServiceServiceSoapBinding" type="tns:ISendMessageWSService"> 
+               <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" /> 
+               <wsdl:operation name="getMessageStatus"> 
+                       <soap:operation soapAction="" style="document" /> 
+                       <wsdl:input name="getMessageStatus"> 
+                               <soap:body use="literal" /> 
+                       </wsdl:input> 
+                       <wsdl:output name="getMessageStatusResponse"> 
+                               <soap:body use="literal" /> 
+                       </wsdl:output> 
+               </wsdl:operation> 
+               <wsdl:operation name="sendMessages"> 
+                       <soap:operation soapAction="" style="document" /> 
+                       <wsdl:input name="sendMessages"> 
+                               <soap:body use="literal" /> 
+                       </wsdl:input> 
+                       <wsdl:output name="sendMessagesResponse"> 
+                               <soap:body use="literal" /> 
+                       </wsdl:output> 
+               </wsdl:operation> 
+       </wsdl:binding> 
+       <wsdl:service name="ISendMessageWSServiceService"> 
+               <wsdl:port binding="tns:ISendMessageWSServiceServiceSoapBinding" name="ISendMessageWSServicePort"> 
+                       <soap:address location="http://localhost:8081/sendMessageWS" /> 
+               </wsdl:port> 
+       </wsdl:service> 
+</wsdl:definitions> 

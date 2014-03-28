@@ -22,7 +22,7 @@
 	<!-- Database datasource configuration -->
 	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://127.0.0.1;databaseName=smsapp" /> <!-- 173.212.210.162 -->
+		<property name="url" value="jdbc:sqlserver://192.168.2.101;databaseName=smsapp" /> <!-- 173.212.210.162 -->
 		<property name="username" value="sa" />
 		<property name="password" value="@@Pess01" />
 		<property name="maxActive" value="5" />

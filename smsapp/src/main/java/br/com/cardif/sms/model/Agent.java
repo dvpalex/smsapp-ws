@@ -81,6 +81,10 @@ public class Agent implements Serializable {
 	@JoinColumn(name = "DISPATCHER_ID", nullable = false)
 	private Dispatcher dispatcher;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "LAST_EXECUTION", nullable = true)
+	private Date lastExecution;
+	
 	public Long getAgentId() {
 		return agentId;
 	}
