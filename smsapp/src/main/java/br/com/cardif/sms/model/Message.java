@@ -33,6 +33,7 @@ public class Message implements Serializable
 	@Column(name = "TEXT", length = 2000, nullable = false)
 	private String text;
 	
+	
 	@Column(name = "SCHEDULED",  nullable = false)
 	private Date scheduled;
 	

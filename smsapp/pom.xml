@@ -21,7 +21,7 @@
 	<aspectj.version>1.6.11</aspectj.version>
 	<quartz.version>2.2.1</quartz.version>
 	<database.persistenceUnit>cardif-sms-PU</database.persistenceUnit>
-	<cxf.version>2.2.3</cxf.version>
+	
 	
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -55,26 +55,6 @@
   
 
   <dependencies>
-    
-  <dependency>
-          <groupId>org.apache.cxf</groupId>
-          <artifactId>cxf-bundle</artifactId>
-          <version>2.2.3</version>
-          <exclusions>
-              <exclusion>
-                  <groupId>org.springframework</groupId>
-                  <artifactId>spring-beans</artifactId>
-              </exclusion>
-              <exclusion>
-                  <groupId>org.springframework</groupId>
-                  <artifactId>spring-context</artifactId>
-              </exclusion>
-              <exclusion>
-                  <groupId>org.springframework</groupId>
-                  <artifactId>spring-core</artifactId>
-              </exclusion>
-          </exclusions>
-      </dependency>
     
     <dependency>
 		<groupId>org.slf4j</groupId>
@@ -473,14 +453,7 @@
       				<version>2.1</version>
     		</plugin>
     		 -->
-    		  <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
-                <configuration>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                </configuration>
-            </plugin>
-    
+    		
 	</plugins>    	
 </build>
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
+
+<h:head>
+	<h1>Exchedule</h1>
+</h:head>	
+
+
+
+<h:body>
+	<h:form>
+		
+		<h:outputLabel value="Nome Agent :#{agent.name}" /><p />
+		<h:inputHidden  value="#{agent.name}"/>
+		<h:inputHidden  value="#{agent.agentId}"/>
+		<h:commandButton value="Executar" actionListener="#{agent.execute}" /><p />
+		<h:commandButton value="disabled" actionListener="#{agent.disableAgent}" /><p />
+		<h:commandButton value="remove" actionListener="#{agent.removeAgent}" /><p />
+	</h:form>
+</h:body>
+
+
+	
+</html>	

@@ -20,6 +20,5 @@ public class SmsLoadFileAgent implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		System.out.println("SmsLoadFileAgent executed at: " + Calendar.getInstance().getTime() );
 	}
-
 	
 }

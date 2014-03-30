@@ -14,8 +14,11 @@ public class AgentDataMock {
 
 	private Set<Agent> agents = new HashSet<Agent>();
 	
-	public AgentDataMock(){
 	
+	
+	public AgentDataMock(Boolean vazio){
+	
+			if(!vazio){
 			//Frequencia recorrente
 			Agent smsLoadAgent = new Agent();
 			smsLoadAgent.setName("SmsLoadFileAgent");
@@ -23,7 +26,7 @@ public class AgentDataMock {
 			smsLoadAgent.setFlagFrequencyEach(true);
 			smsLoadAgent.setFlagFrequencyEachBegin(9);
 			smsLoadAgent.setFlagFrequencyEachEnd(23);
-			smsLoadAgent.setFlagFrequencyEachValue(60); //60
+			smsLoadAgent.setFlagFrequencyEachValue(1); //60
 			smsLoadAgent.setFlagWeekDayFriday(true);
 			smsLoadAgent.setFlagWeekDaySaturday(true);
 			smsLoadAgent.setFlagWeekDaySunday(true);
@@ -32,20 +35,6 @@ public class AgentDataMock {
 			smsLoadAgent.setFlagWeekDayWednesday(true);
 			smsLoadAgent.setFlagWeekDayThursday(true);	
 			
-			Agent smsLoadAgent1 = new Agent();
-			smsLoadAgent1.setName("SmsLoadFileAgent");
-			smsLoadAgent1.setAgentId(2358L);
-			smsLoadAgent1.setFlagFrequencyEach(true);
-			smsLoadAgent1.setFlagFrequencyEachBegin(9);
-			smsLoadAgent1.setFlagFrequencyEachEnd(23);
-			smsLoadAgent1.setFlagFrequencyEachValue(70); //60
-			smsLoadAgent1.setFlagWeekDayFriday(true);
-			smsLoadAgent1.setFlagWeekDaySaturday(true);
-			smsLoadAgent1.setFlagWeekDaySunday(true);
-			smsLoadAgent1.setFlagWeekDayMonday(true);
-			smsLoadAgent1.setFlagWeekDayTuesday(true);
-			smsLoadAgent1.setFlagWeekDayWednesday(true);
-			smsLoadAgent1.setFlagWeekDayThursday(true);	
 			
 	
 			//Frequencia recorrente
@@ -66,12 +55,12 @@ public class AgentDataMock {
 			
 			//Frequencia recorrente
 			Agent smsSendAgent = new Agent();
-			smsSendAgent.setName("SmsCheckStatusAgent");
+			smsSendAgent.setName("SmsSendAgent");
 			smsSendAgent.setAgentId(2401L);
 			smsSendAgent.setFlagFrequencyEach(true);
-			smsSendAgent.setFlagFrequencyEachBegin(9);
+			smsSendAgent.setFlagFrequencyEachBegin(1);
 			smsSendAgent.setFlagFrequencyEachEnd(23);
-			smsSendAgent.setFlagFrequencyEachValue(120);
+			smsSendAgent.setFlagFrequencyEachValue(1);
 			smsSendAgent.setFlagWeekDayFriday(true);
 			smsSendAgent.setFlagWeekDaySaturday(true);
 			smsSendAgent.setFlagWeekDaySunday(true);
@@ -86,6 +75,8 @@ public class AgentDataMock {
 			cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY));
 			cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 4);
 			
+			
+			/*
 			Agent smsSendAgent1 = new Agent();
 			smsSendAgent1.setName("SmsSendAgent");
 			smsSendAgent1.setAgentId(2407L);
@@ -96,6 +87,8 @@ public class AgentDataMock {
 			smsSendAgent1.setFlagWeekDayTuesday(true);
 			smsSendAgent1.setFlagWeekDayWednesday(true);
 			smsSendAgent1.setFlagWeekDayThursday(true);
+			*/
+			
 			
 			/*
 			Agent smsClassNotFoundExceptionAgent = new Agent();
@@ -108,9 +101,9 @@ public class AgentDataMock {
 			agents.add(smsLoadAgent);
 			agents.add(smsSendAgent);
 			agents.add(smsCheckStatusAgent);
-			agents.add(smsLoadAgent1);
-			agents.add(smsSendAgent1);
-
+			//agents.add(smsLoadAgent1);
+			//agents.add(smsSendAgent1);
+		}
 	}
 
 	
