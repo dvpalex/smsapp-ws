@@ -262,6 +262,15 @@ public class Agent implements Serializable {
 		return true;
 	}
 
+	public String getClassName(){
+		String[] ret = name.split("\\."); 
+		if(ret.length == 0){
+			return name;
+		}else{
+			return ret[ret.length -1];
+		}
+	}
+	
 	
 	
 }

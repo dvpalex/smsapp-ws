@@ -45,7 +45,7 @@ public class ScheduleServletListener implements ServletContextListener  {
 
 	@Override
 	public void contextInitialized(ServletContextEvent context) {
-			AgentDataMock agent = new AgentDataMock(false);
+			AgentDataMock agent = new AgentDataMock(true);
 			scheduler(agent.agentsFake());
 			ServletContext servletContext = context.getServletContext();
 			servletContext.setAttribute(QUARTZ_FACTORY_KEY, factory);

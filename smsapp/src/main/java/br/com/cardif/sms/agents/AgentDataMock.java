@@ -21,10 +21,10 @@ public class AgentDataMock {
 			if(!vazio){
 			//Frequencia recorrente
 			Agent smsLoadAgent = new Agent();
-			smsLoadAgent.setName("SmsLoadFileAgent");
+			smsLoadAgent.setName("br.com.cardif.sms.agents.SmsLoadFileAgent");
 			smsLoadAgent.setAgentId(2359L);
 			smsLoadAgent.setFlagFrequencyEach(true);
-			smsLoadAgent.setFlagFrequencyEachBegin(9);
+			smsLoadAgent.setFlagFrequencyEachBegin(8);
 			smsLoadAgent.setFlagFrequencyEachEnd(23);
 			smsLoadAgent.setFlagFrequencyEachValue(1); //60
 			smsLoadAgent.setFlagWeekDayFriday(true);
@@ -39,10 +39,10 @@ public class AgentDataMock {
 	
 			//Frequencia recorrente
 			Agent smsCheckStatusAgent = new Agent();
-			smsCheckStatusAgent.setName("SmsCheckStatusAgent");
+			smsCheckStatusAgent.setName("br.com.cardif.sms.agents.SmsCheckStatusAgent");
 			smsCheckStatusAgent.setAgentId(2400L);
 			smsCheckStatusAgent.setFlagFrequencyEach(true);
-			smsCheckStatusAgent.setFlagFrequencyEachBegin(9);
+			smsCheckStatusAgent.setFlagFrequencyEachBegin(8);
 			smsCheckStatusAgent.setFlagFrequencyEachEnd(23);
 			smsCheckStatusAgent.setFlagFrequencyEachValue(1);
 			smsCheckStatusAgent.setFlagWeekDayFriday(true);
@@ -55,7 +55,7 @@ public class AgentDataMock {
 			
 			//Frequencia recorrente
 			Agent smsSendAgent = new Agent();
-			smsSendAgent.setName("SmsSendAgent");
+			smsSendAgent.setName("br.com.cardif.sms.agents.SmsSendAgent");
 			smsSendAgent.setAgentId(2401L);
 			smsSendAgent.setFlagFrequencyEach(true);
 			smsSendAgent.setFlagFrequencyEachBegin(1);

@@ -5,13 +5,16 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.quartz.Job;
 import org.quartz.JobExecutionException;
 import org.quartz.SchedulerException;
 import org.quartz.ee.servlet.QuartzInitializerListener;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.stereotype.Component;
 
+import br.com.cardif.sms.agents.AgentDataMock;
 import br.com.cardif.sms.agents.AgentSchedulerUtil;
+import br.com.cardif.sms.model.Agent;
 
 
 @ManagedBean(name="agent")
@@ -21,6 +24,7 @@ public class AgentBean {
 
 	private String name = "br.com.cardif.sms.agents.SmsLoadFileAgent" ;//= "br.com.cardif.sms.SmsLoadFileAgent";
 	private Long agentId = 2359L;
+	private String className = "SmsLoadFileAgent";
 	
 	public String getName() {
 		return name ;
@@ -63,36 +67,33 @@ public class AgentBean {
 	
 	public void disableAgent(ActionEvent evt){
 		
-		System.out.println("Desativado agent: " + name);
+		System.out.println("Desativado agent: " + className);
 		
 		StdSchedulerFactory stdSchedulerFactory = (StdSchedulerFactory) FacesContext.getCurrentInstance()
 				.getExternalContext().getApplicationMap().get(QuartzInitializerListener.QUARTZ_FACTORY_KEY);
 		
 		AgentSchedulerUtil util = new AgentSchedulerUtil(stdSchedulerFactory);
 		try {
-			util.disableAgent(agentId);
+			util.disableAgent(className);
 		} catch (SchedulerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
 	}
 	
 	public void removeAgent(ActionEvent evt){
-		
-		System.out.println("removido agent: " + name);
 		
 		StdSchedulerFactory stdSchedulerFactory = (StdSchedulerFactory) FacesContext.getCurrentInstance()
 				.getExternalContext().getApplicationMap().get(QuartzInitializerListener.QUARTZ_FACTORY_KEY);
 		
 		AgentSchedulerUtil util = new AgentSchedulerUtil(stdSchedulerFactory);
 		try {
-			if(util.removeAgent(agentId)){
-				System.out.println("removido com sucesso agent: " + name);
+			if(util.removeAgent(className)){
+				System.out.println("removido com sucesso agent: " + className);
 			}else{
 				
-				System.out.println("não foi possivel remover com sucesso agent: " + name);
+				System.out.println("não foi possivel remover  agent: " + className);
 			}
 				
 		} catch (SchedulerException e) {
@@ -101,5 +102,19 @@ public class AgentBean {
 		}
 
 	}
+	
+	public void exchedule(ActionEvent evt) throws ClassNotFoundException, SchedulerException{
+		
+		StdSchedulerFactory stdSchedulerFactory = (StdSchedulerFactory) FacesContext.getCurrentInstance()
+				.getExternalContext().getApplicationMap().get(QuartzInitializerListener.QUARTZ_FACTORY_KEY);
+		
+		AgentSchedulerUtil util = new AgentSchedulerUtil(stdSchedulerFactory);
+		
+		AgentDataMock agent = new AgentDataMock(false);
+		
+		util.addAgent((Agent)agent.agentsFake().toArray()[0]);
+		
+	}
+	
 	
 }
